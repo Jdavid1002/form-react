@@ -1,0 +1,53 @@
+.summary-input {
+  font-size: 20px;
+ display: flex;
+  align-items: center;
+  justify-content: left; 
+  gap: 20px;
+  width: 360px;
+}
+
+.div-1 {
+  width: 200px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.div-2 {
+  width: 200px;
+  margin-top: 10px;
+}
+
+@media (max-width: 365px) {
+  .summary-input {
+    font-size: 17px;
+    margin: 5px;
+  }
+  .div-1 {
+    width: 150px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .div-2 {
+    width: 10px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 378px) {
+  .summary-input {
+    font-size: 18px;
+    margin: 5px;
+  }
+  .div-1 {
+    width: 120px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .div-2 {
+    width: 200px;
+    margin-top: 10px;
+  }
+}

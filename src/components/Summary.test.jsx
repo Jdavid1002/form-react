@@ -7,7 +7,7 @@ describe('Summary test', () => {
 
   it('validate text of summary', () => {
     const component = render(<Summary />);
-    component.getByText('Nombres ---');
+    component.getByText('Nombres:');
   });
 
 });

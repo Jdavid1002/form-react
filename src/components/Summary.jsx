@@ -18,8 +18,10 @@ const Summary = () => {
 
     return inputs?.map(input => {
       return{
+        
         value : input.value,
         label : input.label
+        
       }
     })
   }
@@ -27,9 +29,14 @@ const Summary = () => {
   return (
     <div>
       {getAllInputs()?.map((input, idx) => 
-        <div className="summary-input" key={idx} >
-          <p>{input.label} --- {input.value} </p>
-        </div>
+      <main className="summary-input" key={idx}>
+          <div className='div-1'>
+            <p>{input.label}:</p>
+          </div>
+          <div className='div-2'>
+            <p>{input.value}</p>
+          </div>
+        </main>
       )}
     </div>
 
