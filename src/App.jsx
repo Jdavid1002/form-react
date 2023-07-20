@@ -23,13 +23,15 @@ function App() {
   ]
   
   return (
-    <div>
+    <div className='page'>
+      <div className='form'>
       <Form
-        title='Paso 1'
+        title='Registrarse'
         HandleNextFunction={() => console.log('Hola')}
         HandlePreviuosFunction={() => console.log('Chao')}
         inputs={inputs}
       />
+    </div>
     </div>
   )
 }
