@@ -1,47 +1,64 @@
 import React, {useState} from 'react'
+import { useFormik } from 'formik';
 import './Form.css'
 
 const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => {
 
-  const [InputsState, setInputsState] = useState(inputs)
+  const getInitialValues = () => {
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
+    const ConvertInputsInObject = inputs.reduce((acc, item) => {
+      acc[item.name] = item?.value
+      return acc
+    }, {})
 
-    const newInputsState = InputsState.map(input => {
-      if (input.name === name) {
-        return { 
-          ...input, 
-          value : value
-        }
-      }
-      return input
-    })
-    setInputsState(newInputsState)
+    return ConvertInputsInObject
   }
 
+  const formik = useFormik({
+    initialValues: getInitialValues(),
+    onSubmit: values => HandleNextFunction(values),
+    validate : values => {
+
+      let errors = {}
+
+      const valueList = Object.keys(values)
+
+      for (const _value of valueList) {
+        if(!values[_value]) errors[_value] = 'Required'
+      }
+
+      return errors
+    }
+  });
+
+
   return (
-    <div className='' >
+    <form onSubmit={formik.handleSubmit}>
       <h2> {title} </h2>
 
-      {InputsState.map((input, index) =>
+      {inputs.map((input, index) =>
         <div key={index}>
-          <label>{input.label}</label>
+          <label htmlFor={input.name}> {input.label} </label>
           <br />
           <input
+            id={input.name}
             name={input.name}
             type={input.type}
             placeholder={input.placeholder}
-            value={input.value}
-            onChange={(e) => handleChange(e)}
+            onChange={formik.handleChange}
+            value={formik.values[input.name]}
           />
+
+          {formik.errors[input.name] ? <div>{formik.errors[input.name]}</div> : null}
+
+          <br />
+
         </div>
       )}
 
-      <button onClick={() => HandlePreviuosFunction() } > Anterior </button>
-      <button onClick={() => HandleNextFunction() } > Siguiente </button>
-
-    </div>
+      <button type="submit">Submit</button>
+      <button onClick={() => HandlePreviuosFunction()} >Submit</button>
+    </form>
   );
 }
 
