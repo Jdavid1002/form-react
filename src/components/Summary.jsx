@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Context } from '../config/Context'
-
+import { steps } from '../App'
 import './Summary.css'
 
 const Summary = () => {
@@ -10,7 +10,9 @@ const Summary = () => {
   const getAllInputs = () => {
     let inputs = []
 
-    Steps.forEach(step => {
+    const newSteps = Steps || steps
+
+    newSteps.forEach(step => {
       inputs = inputs.concat(step.inputs)
     })
 
@@ -24,8 +26,8 @@ const Summary = () => {
 
   return (
     <div>
-      {getAllInputs()?.map(input => 
-        <div className="summary-input">
+      {getAllInputs()?.map((input, idx) => 
+        <div className="summary-input" key={idx} >
           <p>{input.label} --- {input.value} </p>
         </div>
       )}

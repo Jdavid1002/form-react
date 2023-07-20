@@ -12,7 +12,8 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hideP
   }
 
   const getInitialValues = () => {
-    const ConvertInputsInObject = getStep()?.inputs.reduce((acc, item) => {
+    const newInputs = getStep()?.inputs || inputs
+    const ConvertInputsInObject = newInputs.reduce((acc, item) => {
       acc[item.name] = item?.value
       return acc
     }, {})
@@ -101,8 +102,8 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hideP
                 formik.handleChange(e)
                 updateContextWithInputValue(e)
               }}
-              value={input?.value ||  formik.values[input.name] || ''}
-              style={formik.errors[input.name] ? {border : 'none', borderBottom: '1px solid red'} : undefined}
+              value={input?.value ||  formik?.values[input?.name] || ''}
+              style={formik?.errors[input?.name] ? {border : 'none', borderBottom: '1px solid red'} : undefined}
               className='input-data'
             />
 
