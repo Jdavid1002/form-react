@@ -24,7 +24,7 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
       const valueList = Object.keys(values)
 
       for (const _value of valueList) {
-        if(!values[_value]) errors[_value] = 'Required'
+        if(!values[_value]) errors[_value] = true
       }
 
       return errors
@@ -47,17 +47,16 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
             placeholder={input.placeholder}
             onChange={formik.handleChange}
             value={formik.values[input.name]}
+            style={formik.errors[input.name] ? {border : '1px solid red'} : undefined}
           />
-
-          {formik.errors[input.name] ? <div>{formik.errors[input.name]}</div> : null}
 
           <br />
 
         </div>
       )}
 
-      <button type="submit">Submit</button>
-      <button onClick={() => HandlePreviuosFunction()} >Submit</button>
+      <button type="submit"> Siguiente </button>
+      <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
     </form>
   );
 }
