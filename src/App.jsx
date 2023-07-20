@@ -2,10 +2,9 @@ import React,{useState} from 'react'
 import Form from './components/Form'
 
 import './App.css'
+import { Context } from './config/Context'
 
 function App() {
-
-  const [StepSelected, setStepSelected] = useState(1)
 
   const steps = [
     {
@@ -58,14 +57,14 @@ function App() {
           placeholder : 'Inserte su número de identificación',
           value : '',
           type : 'number',
-          name : 'first_name'
+          name : 'document_number'
         },
         {
           label : 'Email',
           placeholder : 'Inserte su dirección de correo',
           value : '',
           type : 'email',
-          name : 'last_name'
+          name : 'email'
         }
       ],
       title : 'Diseños únicos para ti, siempre acertados',
@@ -79,14 +78,14 @@ function App() {
           placeholder : 'Inserte su animal favorito',
           value : '',
           type : 'text',
-          name : 'first_name'
+          name : 'animal'
         },
         {
           label : 'Color favorito',
-          placeholder : 'Inserte su Apellido',
+          placeholder : '',
           value : '',
           type : 'color',
-          name : 'last_name'
+          name : 'color'
         }
       ],
       title : 'Comparte tus ideas y marca la diferencia',
@@ -96,18 +95,18 @@ function App() {
       step : 5,
       inputs : [
         {
-          label : 'Nombres',
-          placeholder : 'Inserte sus nombres',
+          label : 'Estatura',
+          placeholder : 'Inserta tu estatura',
           value : '',
-          type : 'text',
-          name : 'first_name'
+          type : 'number',
+          name : 'height'
         },
         {
-          label : 'Apellidos',
-          placeholder : 'Inserte su Apellido',
+          label : 'Peso',
+          placeholder : 'Inserta tu peso',
           value : '',
-          type : 'text',
-          name : 'last_name'
+          type : 'number',
+          name : 'weight'
         }
       ],
       title : 'Tus comentarios nos inspiran a innovar',
@@ -115,24 +114,30 @@ function App() {
     }
   ]
 
+  const [StepSelected, setStepSelected] = useState(1)
+  const [Steps, setSteps] = useState(steps)
+
   const getStep = () => {
-    return steps?.find(item => item?.step === StepSelected)
+    return Steps?.find(item => item?.step === StepSelected)
   }
 
   return (
-    <div className='container-app' >
-      <h1 className='title-app' > FashionApp </h1>
-      {getStep() &&
-        <Form
-          title={getStep()?.title}
-          HandleNextFunction={() => setStepSelected(StepSelected + 1)}
-          HandlePreviuosFunction={() => setStepSelected(StepSelected - 1)}
-          inputs={getStep()?.inputs}
-          hidePreviuos={getStep()?.hidePreviuos}
-        />
-      }
+    <Context.Provider value={{ Steps, setSteps }} >
+      <div className='container-app' >
+        <h1 className='title-app' > FashionApp </h1>
+        {getStep() &&
+          <Form
+            title={getStep()?.title}
+            HandleNextFunction={() => setStepSelected(StepSelected + 1)}
+            HandlePreviuosFunction={() => setStepSelected(StepSelected - 1)}
+            inputs={getStep()?.inputs}
+            hidePreviuos={getStep()?.hidePreviuos}
+            StepSelected={StepSelected}
+          />
+        }
 
-    </div>
+      </div>
+    </Context.Provider>
   )
 }
 
