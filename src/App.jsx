@@ -26,7 +26,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'REGISTRATE',
+      title : 'Mejora tu estilo con nuestros consejos personalizados',
       hidePreviuos : true
     },
     {
@@ -47,7 +47,7 @@ function App() {
           name : 'age'
         }
       ],
-      title : 'REGISTRATE',
+      title : 'Danos tu opinión y crea tendencias únicas',
       hidePreviuos : false
     },
     {
@@ -68,7 +68,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'REGISTRATE',
+      title : 'Diseños únicos para ti, siempre acertados',
       hidePreviuos : false
     },
     {
@@ -89,7 +89,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'REGISTRATE',
+      title : 'Comparte tus ideas y marca la diferencia',
       hidePreviuos : false
     },
     {
@@ -110,7 +110,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'REGISTRATE',
+      title : 'Tus comentarios nos inspiran a innovar',
       hidePreviuos : false
     }
   ]
@@ -120,7 +120,8 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='container-app' >
+      <h1 className='title-app' > FashionApp </h1>
       {getStep() &&
         <Form
           title={getStep()?.title}

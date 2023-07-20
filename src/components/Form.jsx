@@ -47,7 +47,6 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hideP
 
   return (
     <div className='page'>
-      <h2 className='welcome'>BIENVENIDO</h2>
       <form onSubmit={formik.handleSubmit} className='form'>
         <h2 className='title'> {title} </h2>
 
@@ -72,9 +71,13 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hideP
 
         <div className='div-buttons'>
           {hidePreviuos ? null :
-            <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
+            <button className='button-previuos' type="button" onClick={() => HandlePreviuosFunction()} >
+              <p> Anterior </p>
+            </button>
           }
-          <button type="submit"> Siguiente </button>
+          <button type="submit">  
+            <p> Siguiente </p>
+          </button>
         </div>
       </form>
     </div>
