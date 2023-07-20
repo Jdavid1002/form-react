@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import { useFormik } from 'formik';
 import './Form.css'
 
-const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => {
+const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hidePreviuos }) => {
 
   const getInitialValues = () => {
-
     const ConvertInputsInObject = inputs.reduce((acc, item) => {
       acc[item.name] = item?.value
       return acc
@@ -16,7 +15,10 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
 
   const formik = useFormik({
     initialValues: getInitialValues(),
-    onSubmit: values => HandleNextFunction(values),
+    onSubmit: (values) => {
+      HandleNextFunction()
+      formik.resetForm()
+    },
     validate : values => {
 
       let errors = {}
@@ -27,9 +29,20 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
         if(!values[_value]) errors[_value] = true
       }
 
+      const errors_keys = Object.keys(errors)
+      const inputs_keys = inputs?.map(item => item.name)
+
+      for (const _keys of errors_keys) {
+        if(!inputs_keys.includes(_keys)) delete errors[_keys]
+      }
+
       return errors
     }
   });
+
+  useEffect(() => {
+    return () => formik.resetForm()
+  }, [])
 
 
   return (
@@ -46,7 +59,7 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
             type={input.type}
             placeholder={input.placeholder}
             onChange={formik.handleChange}
-            value={formik.values[input.name]}
+            value={formik.values[input.name] || ''}
             style={formik.errors[input.name] ? {border : '1px solid red'} : undefined}
           />
 
@@ -56,7 +69,9 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction }) => 
       )}
 
       <button type="submit"> Siguiente </button>
-      <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
+      {hidePreviuos ? null :
+        <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
+      }
     </form>
   );
 }
