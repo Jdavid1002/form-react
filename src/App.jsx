@@ -122,6 +122,11 @@ function App() {
     return Steps?.find(item => item?.step === StepSelected)
   }
 
+  const handleReset = () => {
+    setStepSelected(1)
+    setSteps(steps)
+  }
+
   return (
     <Context.Provider value={{ Steps, setSteps }} >
       <div className='container-app' >
@@ -136,7 +141,9 @@ function App() {
             StepSelected={StepSelected}
           />
         : 
-          <Summary />
+          <Summary 
+            handleReset={() => handleReset()}
+          />
         }
 
       </div>
