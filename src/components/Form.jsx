@@ -46,33 +46,38 @@ const Form = ({ title, HandleNextFunction, inputs, HandlePreviuosFunction, hideP
 
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <h2> {title} </h2>
+    <div className='page'>
+      <h2 className='welcome'>BIENVENIDO</h2>
+      <form onSubmit={formik.handleSubmit} className='form'>
+        <h2 className='title'> {title} </h2>
 
-      {inputs.map((input, index) =>
-        <div key={index}>
-          <label htmlFor={input.name}> {input.label} </label>
-          <br />
-          <input
-            id={input.name}
-            name={input.name}
-            type={input.type}
-            placeholder={input.placeholder}
-            onChange={formik.handleChange}
-            value={formik.values[input.name] || ''}
-            style={formik.errors[input.name] ? {border : '1px solid red'} : undefined}
-          />
+        {inputs.map((input, index) =>
+          <div key={index}>
+            <label htmlFor={input.name}> {input.label} </label>
+            <br />
+            <input
+              id={input.name}
+              name={input.name}
+              type={input.type}
+              placeholder={input.placeholder}
+              onChange={formik.handleChange}
+              value={formik.values[input.name] || ''}
+              style={formik.errors[input.name] ? {border : 'none', borderBottom: '1px solid red'} : undefined}
+              className='input-data'/>
 
-          <br />
+            <br />
 
+          </div>
+        )}
+
+        <div className='div-buttons'>
+          {hidePreviuos ? null :
+            <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
+          }
+          <button type="submit"> Siguiente </button>
         </div>
-      )}
-
-      <button type="submit"> Siguiente </button>
-      {hidePreviuos ? null :
-        <button type="button" onClick={() => HandlePreviuosFunction()} >Anterior</button>
-      }
-    </form>
+      </form>
+    </div>
   );
 }
 

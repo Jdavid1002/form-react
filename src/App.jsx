@@ -26,7 +26,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'Paso 1',
+      title : 'REGISTRATE',
       hidePreviuos : true
     },
     {
@@ -47,7 +47,7 @@ function App() {
           name : 'age'
         }
       ],
-      title : 'Paso 2',
+      title : 'REGISTRATE',
       hidePreviuos : false
     },
     {
@@ -68,7 +68,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'Paso 3',
+      title : 'REGISTRATE',
       hidePreviuos : false
     },
     {
@@ -89,7 +89,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'Paso 4',
+      title : 'REGISTRATE',
       hidePreviuos : false
     },
     {
@@ -110,7 +110,7 @@ function App() {
           name : 'last_name'
         }
       ],
-      title : 'Paso 5',
+      title : 'REGISTRATE',
       hidePreviuos : false
     }
   ]
