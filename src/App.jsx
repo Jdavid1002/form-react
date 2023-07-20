@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import Form from './components/Form'
+import { Context } from './config/Context'
+import Summary from './components/Summary'
 
 import './App.css'
-import { Context } from './config/Context'
+
 
 function App() {
 
@@ -60,11 +62,11 @@ function App() {
           name : 'document_number'
         },
         {
-          label : 'Email',
-          placeholder : 'Inserte su dirección de correo',
+          label : 'Color favorito',
+          placeholder : 'Inserte su color favorito',
           value : '',
-          type : 'email',
-          name : 'email'
+          type : 'color',
+          name : 'color'
         }
       ],
       title : 'Diseños únicos para ti, siempre acertados',
@@ -72,27 +74,6 @@ function App() {
     },
     {
       step : 4,
-      inputs : [
-        {
-          label : 'Animal Favorito',
-          placeholder : 'Inserte su animal favorito',
-          value : '',
-          type : 'text',
-          name : 'animal'
-        },
-        {
-          label : 'Color favorito',
-          placeholder : '',
-          value : '',
-          type : 'color',
-          name : 'color'
-        }
-      ],
-      title : 'Comparte tus ideas y marca la diferencia',
-      hidePreviuos : false
-    },
-    {
-      step : 5,
       inputs : [
         {
           label : 'Estatura',
@@ -111,7 +92,28 @@ function App() {
       ],
       title : 'Tus comentarios nos inspiran a innovar',
       hidePreviuos : false
-    }
+    },
+    {
+      step : 5,
+      inputs : [
+        {
+          label : 'Email',
+          placeholder : 'Inserte su dirección de correo',
+          value : '',
+          type : 'email',
+          name : 'email'
+        },
+        {
+          label : 'Contraseña',
+          placeholder : 'Inserte su contraseña',
+          value : '',
+          type : 'password',
+          name : 'password'
+        },
+      ],
+      title : 'Comparte tus ideas y marca la diferencia',
+      hidePreviuos : false
+    },
   ]
 
   const [StepSelected, setStepSelected] = useState(1)
@@ -125,7 +127,7 @@ function App() {
     <Context.Provider value={{ Steps, setSteps }} >
       <div className='container-app' >
         <h1 className='title-app' > FashionApp </h1>
-        {getStep() &&
+        {getStep() ?
           <Form
             title={getStep()?.title}
             HandleNextFunction={() => setStepSelected(StepSelected + 1)}
@@ -134,6 +136,8 @@ function App() {
             hidePreviuos={getStep()?.hidePreviuos}
             StepSelected={StepSelected}
           />
+        : 
+          <Summary />
         }
 
       </div>
