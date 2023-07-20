@@ -13,14 +13,14 @@ function App() {
       inputs : [
         {
           label : 'Nombres',
-          placeholder : 'Inserte sus nombres',
+          placeholder : 'Inserte su nombre',
           value : '',
           type : 'text',
           name : 'first_name'
         },
         {
           label : 'Apellidos',
-          placeholder : 'Inserte su Apellido',
+          placeholder : 'Inserte su apellido',
           value : '',
           type : 'text',
           name : 'last_name'
@@ -54,17 +54,17 @@ function App() {
       step : 3,
       inputs : [
         {
-          label : 'Titulo Universitario',
-          placeholder : 'pregrado, postgrado, etc',
+          label : 'Número de identificación',
+          placeholder : 'Inserte su número de identificación',
           value : '',
-          type : 'text',
-          name : 'title_student'
+          type : 'number',
+          name : 'first_name'
         },
         {
-          label : 'Apellidos',
-          placeholder : 'Inserte su Apellido',
+          label : 'Email',
+          placeholder : 'Inserte su dirección de correo',
           value : '',
-          type : 'text',
+          type : 'email',
           name : 'last_name'
         }
       ],
@@ -75,17 +75,17 @@ function App() {
       step : 4,
       inputs : [
         {
-          label : 'Nombres',
-          placeholder : 'Inserte sus nombres',
+          label : 'Animal Favorito',
+          placeholder : 'Inserte su animal favorito',
           value : '',
           type : 'text',
           name : 'first_name'
         },
         {
-          label : 'Apellidos',
+          label : 'Color favorito',
           placeholder : 'Inserte su Apellido',
           value : '',
-          type : 'text',
+          type : 'color',
           name : 'last_name'
         }
       ],
